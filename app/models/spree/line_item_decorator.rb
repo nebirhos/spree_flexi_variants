@@ -22,7 +22,7 @@ module Spree
             next if option.empty? 
 
             if option.customization_image? 
-              str << "#{option.customizable_product_option.presentation} = #{File.basename option.customization_image.url}"
+              str << "#{option.customizable_product_option.presentation} = #{option.customization_image_file_name}"
             else 
               str << "#{option.customizable_product_option.presentation} = #{option.value}"
             end 

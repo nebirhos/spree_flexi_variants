@@ -25,7 +25,7 @@
             <% else %>
 
               <% if option.customization_image? %>
-                <%= image_tag(option.customization_image.url :mini) %>
+                <%= link_to image_tag(option.customization_image.url :mini), option.customization_image.url(:original, false) %>
               <% else %>
                 <p><%= option.customizable_product_option.presentation %> = <%= option.value %></p>
               <% end %>

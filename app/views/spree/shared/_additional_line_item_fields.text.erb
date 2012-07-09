@@ -18,7 +18,7 @@
             <%= render :partial => "spree/orders/custom_fields/#{partial}", :locals=>{:option => option} %>
          <% else %>
               <% if option.customization_image? %>
-                <%= option.customizable_product_option.presentation %> = <%= File.basename option.customization_image.url %>
+                <%= option.customizable_product_option.presentation %> = <%= option.customization_image_file_name %>
               <% else %>
                 <%= option.customizable_product_option.presentation %> = <%= option.value %>
               <% end %>
