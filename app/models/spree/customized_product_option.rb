@@ -9,8 +9,8 @@ module Spree
     attr_accessible :customization_image
     has_attached_file :customization_image,
                       :styles => { :mini => ["48x48#", :png] },
-                      :url => '/spree/artworks/:id/:style/:basename.:extension',
-                      :path => ':rails_root/public/spree/artworks/:id/:style/:basename.:extension'
+                      :url => '/spree/customization_images/:id/:style/:basename.:extension',
+                      :path => ':rails_root/public/spree/customization_images/:id/:style/:basename.:extension'
 
     # Load user defined paperclip settings
     if Spree::Config[:use_s3]
@@ -20,11 +20,6 @@ module Spree
       Spree::CustomizedProductOption.attachment_definitions[:customization_image][:s3_headers] = ActiveSupport::JSON.decode(Spree::Config[:s3_headers])
       Spree::CustomizedProductOption.attachment_definitions[:customization_image][:bucket] = Spree::Config[:s3_bucket]
     end
-
-    Spree::CustomizedProductOption.attachment_definitions[:customization_image][:styles] = ActiveSupport::JSON.decode(Spree::Config[:attachment_styles])
-    Spree::CustomizedProductOption.attachment_definitions[:customization_image][:path] = Spree::Config[:attachment_path]
-    Spree::CustomizedProductOption.attachment_definitions[:customization_image][:default_url] = Spree::Config[:attachment_default_url]
-    Spree::CustomizedProductOption.attachment_definitions[:customization_image][:default_style] = Spree::Config[:attachment_default_style]
 
     def empty?
       value.empty? && !customization_image?
