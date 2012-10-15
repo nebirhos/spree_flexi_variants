@@ -8,7 +8,6 @@ module Spree
 
     attr_accessible :customization_image
     has_attached_file :customization_image,
-                      :styles => { :mini => ["48x48#", :png] },
                       :url => '/spree/customization_images/:id/:style/:basename.:extension',
                       :path => ':rails_root/public/spree/customization_images/:id/:style/:basename.:extension'
 
