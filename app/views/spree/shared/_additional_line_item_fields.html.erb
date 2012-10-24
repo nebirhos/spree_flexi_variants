@@ -25,7 +25,12 @@
             <% else %>
 
               <% if option.customization_image? %>
-                <%= link_to image_tag(option.customization_image.url :mini), option.customization_image.url(:original, false) %>
+                <%= link_to "Download", option.customization_image.url(:original, false), :target => "_blank" %>
+                (<%= option.customization_image.content_type %>, <%= number_to_human_size(option.customization_image.size) %>)
+                <% if controller.class.parent == Spree::Admin %>
+                  <% link_name = icon('delete') + ' ' + t(:delete) %>
+                  <%= link_to link_name, admin_customized_product_option_path(option), :class => "delete-customization-image", :data => { :confirm => t(:are_you_sure) } %>
+                <% end %>
               <% else %>
                 <p><%= option.customizable_product_option.presentation %> = <%= option.value %></p>
               <% end %>

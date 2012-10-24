@@ -5,6 +5,8 @@ Spree::Core::Engine.routes.prepend do
 
   namespace :admin do
 
+    resources :customized_product_options, :only => [:destroy]
+
     # resources :configuration_exclusions
     resources :product_customization_types do
       resources :customizable_product_options do

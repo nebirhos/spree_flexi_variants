@@ -15,5 +15,28 @@ $(document).ready(function(){
 
   $("#add_product_name").product_autocomplete();
 
+  // Delete customized_product_option
+  $('body').on('click', '.delete-customization-image', function() {
+    var el = $(this);
+    if (confirm(el.data("confirm"))) {
+      $.ajax({
+        type: 'POST',
+        url: $(this).attr("href"),
+        data: {
+          _method: 'delete',
+          authenticity_token: AUTH_TOKEN
+        },
+        dataType: 'script',
+        success: function(response) {
+          el.parents("dd").fadeOut('hide');
+        },
+        error: function(response, textStatus, errorThrown) {
+          show_flash_error(response.responseText);
+        }
+      });
+    }
+    return false;
+  });
+
 });
 
